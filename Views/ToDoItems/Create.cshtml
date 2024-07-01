@@ -1,0 +1,54 @@
+﻿@model ToDoListApp.Models.ToDoItem
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h1>Create</h1>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <style>
+        .vidushi {
+            /* Add initial styles if needed */
+        }
+
+            .vidushi:hover {
+
+                background-color: blue;
+            }
+    </style>
+    <div class="form-horizontal">
+        <h4>ToDoItem</h4>
+        <hr>
+        @Html.ValidationSummary(true,"", new {@class="text-danger"})
+        <div class="form-group">
+            @Html.LabelFor(Model=>Model.TaskName,htmlAttributes: new{@class="control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model=>model.TaskName, new{htmlAttributes = new { @class="form-control"}})
+                @Html.ValidationMessageFor(model => model.TaskName,"",new{@class="text-danger"})
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            @Html.LabelFor(Model => Model.IsCompleted, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IsCompleted )
+                @Html.ValidationMessageFor(model => model.IsCompleted, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create"  class="vidushi btn btn-default" />
+            </div>
+        </div>
+       
+    </div>  
+}
+
+<div>
+    @Html.ActionLink("Back to List","Index")
+</div>
+
+
